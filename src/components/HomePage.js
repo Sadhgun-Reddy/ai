@@ -1,6 +1,127 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import FAQSection from "./FAQSection";
+import PopularReads from "./PopularReads";
+import PricingSection from "./PricingSection";
+import Footer from "./Footer";
 
 const HomePage = () => {
+
+
+  // State for managing the active tab
+  const [activeTab, setActiveTab] = useState('strategic');
+
+  const tabs = [
+    { id: 'strategic', title: 'Strategic Planning' },
+    { id: 'proposal', title: 'Proposal Generation' },
+    { id: 'precision-tools', title: 'Precision Tools' },
+  ];
+
+  const tabContents = {
+    strategic: (
+      <>
+        <h2 className="text-4xl mb-5 font-bold text-pink-600">AI-Powered Strategic Planning</h2>
+        <h3 className="text-2xl mb-5 text-gray-400 font-bold">Comprehensive Business Strategies from a Single Prompt</h3>
+        <ul className="pl-5 mb-8">
+          <li className="mb-4 text-white">Generate full-fledged strategic plans tailored to your business objectives in minutes</li>
+          <li className="mb-4 text-white">Analyze market conditions, competitive landscapes, and internal capabilities automatically</li>
+          <li className="mb-4 text-white">Receive actionable recommendations and implementation roadmaps with measurable KPIs</li>
+        </ul>
+        <div className="tag-container flex flex-wrap gap-2 mt-5">
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Business Strategy</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Market Analysis</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">SWOT</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Resource Allocation</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Growth Planning</span>
+        </div>
+      </>
+    ),
+    proposal: (
+      <>
+        <h2 className="text-4xl mb-5 text-pink-600 font-bold">Instant Proposal Creation</h2>
+        <h3 className="text-2xl mb-5 text-gray-400 font-bold">From Concept to Compelling Proposal in Seconds</h3>
+        <ul className="pl-5 mb-8">
+          <li className="mb-4 text-white">Transform brief ideas into detailed, professional-grade proposals with a single prompt</li>
+          <li className="mb-4 text-white">Automatically include relevant data, case studies, and projections to support your pitch</li>
+          <li className="mb-4 text-white">Generate compelling outputs tailored for client submission</li>
+        </ul>
+        <div className="tag-container flex flex-wrap gap-2 mt-5">
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Sales Proposals</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Project Pitches</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Grant Applications</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Business Plans</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Executive Summaries</span>
+        </div>
+      </>
+    ),
+    precisionTools: (
+      <>
+        <h2 className="text-4xl font-bold mb-5 text-pink-600">150+ Precision Tools for Every Business Need</h2>
+        <h3 className="text-2xl mb-5 text-gray-400 font-bold">Fine-Tuned AI Writing Assistants for Specific Business Contexts</h3>
+        <ul className="pl-5 mb-8">
+          <li className="mb-4 text-white">Access specialized tools for every stage of your business process - from ideation to execution</li>
+          <li className="mb-4 text-white">Leverage context-specific AI writing assistants tailored for various business communications</li>
+          <li className="mb-4 text-white">Enhance your workflow with tools designed for precision and efficiency</li>
+        </ul>
+        <div className="tag-container flex flex-wrap gap-2 mt-5">
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Ideation Accelerator</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Strategic Planning Aids</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Executive Summary Crafters</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Marketing Copy Optimizers</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Social Media Post Creators</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Creative Writing Boosters</span>
+          <span className="tag bg-gray-800 text-white px-3 py-1 rounded-full text-sm">Business Communication Refiners</span>
+        </div>
+        <p className="mt-5 text-white">
+          From brainstorming your next big idea to polishing your communications, our suite of 150+ precision tools complements our automated proposal feature, ensuring you have the right AI Assistance for every business challenge.
+        </p>
+      </>
+    ),
+  };
+
+
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Array of testimonials
+  const testimonials = [
+    {
+      text: "I find HelloScribe very useful and incredibly good. It creates content that appears to be written by a real person and not a robot. I have used other similar tools in the past, but this one definitely takes a step up in quality. I can only recommend it to everyone.",
+      author: "Ettora L.",
+      source: "https://www.capterra.com/p/236679/HelloScribe/reviews/4297088/",
+    },
+    {
+      text: "I've been stuck in planning mode for a workshop I'm leading, and HelloScribe helped my brain relax in just a few minutes with a fully detailed plan. Everything from brainstorming, research, planning, and strategy development all under one platform.",
+      author: "Tamra M.",
+      source: "https://www.linkedin.com/in/tamramoroski/",
+    },
+    {
+      text: "It's mind-blowing how intelligent and reliable HelloScribe is. I've completed over 1000 actions on the platform, and it has never let me down. If you're looking for a tool that will revolutionize your work process, I highly recommend you buy into HelloScribe now. Trust me, you won't regret it.",
+      author: "Rocki H.",
+      source: "https://www.capterra.com/p/236679/HelloScribe/reviews/6006200/",
+    },
+    {
+      text: "HelloScribe is impressive. Haven't seen anything like it. Extremely useful for research-backed strategy.",
+      author: "Marius A.",
+      source: "https://www.g2.com/products/helloscribe/reviews/helloscribe-review-8751317",
+    }
+  ];
+
+  // Effect to handle testimonial rotation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 8000); // Change testimonials every 8 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [testimonials.length]);
+
+
+
+  
+
+
+
+
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       {/* Navbar Section */}
@@ -15,19 +136,19 @@ const HomePage = () => {
           </a>
 
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/home/helloscribe-about-us" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
+            <a href="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
               About Us
             </a>
-            <a href="/home/pricing" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
+            <a href="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
               Pricing
             </a>
-            <a href="/home/contact-us" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
+            <a href="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
               Contact
             </a>
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            <a href="https://app.helloscribe.ai/auth/login" className="flex items-center space-x-1 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
+            <a href="/" className="flex items-center space-x-1 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
               <span>Log in</span>
               <img
                 src="images/64919bddce1ed295b04bb87e_ArrowUp.svg"
@@ -36,7 +157,7 @@ const HomePage = () => {
               />
             </a>
             <a
-              href="https://app.helloscribe.ai/auth/login"
+              href="/"
               className="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-blue-500/25"
             >
               Try Free
@@ -100,7 +221,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Additional Content Section */}
+      {/* Grid Content Section */}
       <div className="uui-page-padding-2 py-20 bg-gradient-to-b from-gray-800 to-gray-900">
         <div className="container mx-auto px-4">
           <div className="py-12">
@@ -293,10 +414,141 @@ const HomePage = () => {
                 </h2>
               </div>
             </div>
-            <button className="bg-pink-600 text-gray-300 border-none p-3 px-14 mt-5 cursor-pointer font-bold rounded-lg "><a href="/" target="_blank" rel="noopener noreferrer" >Start Free</a></button>
+            <button className="bg-pink-600 text-gray-300 border-none p-3 px-14 mt-5 cursor-pointer font-bold rounded-lg mb-10"><a href="/" target="_blank" rel="noopener noreferrer" >Start Free</a></button>
           </div>
         </div>    
       </div>
+
+
+
+      {/* tabcontents  */}
+      <section>
+        <div className="w-layout-blockcontainer w-container">
+          <div className="research-tabs max-w-screen-lg mx-auto bg-gray-900 shadow-md">
+            <div className="tab-navigation flex justify-between border-b border-gray-800">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  className={`tab-btn flex-1 py-5 bg-transparent border-none cursor-pointer text-lg text-white transition-all duration-300 relative ${activeTab === tab.id ? 'active' : ''}`}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  {tab.title}
+                  {activeTab === tab.id && (
+                    <span className="absolute bottom-0 left-0 h-0.5 bg-pink-600 transition-all duration-300" />
+                  )}
+                </button>
+              ))}
+            </div>
+            <div className="tab-content p-10 pb-18">
+              <div className={`tab-pane ${activeTab === 'strategic' ? 'active' : ''}`} id="strategic" style={{ display: activeTab === 'strategic' ? 'block' : 'none' }}>
+                {tabContents.strategic}
+              </div>
+              <div className={`tab-pane ${activeTab === 'proposal' ? 'active' : ''}`} id="proposal" style={{ display: activeTab === 'proposal' ? 'block' : 'none' }}>
+                {tabContents.proposal}
+              </div>
+              <div className={`tab-pane ${activeTab === 'precision-tools' ? 'active' : ''}`} id="precision-tools" style={{ display: activeTab === 'precision-tools' ? 'block' : 'none' }}>
+                {tabContents.precisionTools}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Why Choose Us */}
+
+      <section className="features-table mt-14">
+        <div className="max-w-screen-lg mx-auto px-4 py-8">
+          <h2 className="text-center text-2xl font-bold mb-6">Why Choose HelloScribe</h2>
+          <div className="comparison-table bg-gray-800 rounded-lg shadow-md p-4">
+            <div className="comparison-row-main flex justify-between bg-gray-700 text-white p-4 rounded-t-lg">
+              <h3 className="comparison-title font-semibold">Standard AI Tools</h3>
+              <h3 className="comparison-title font-semibold">HelloScribe</h3>
+            </div>
+            {[
+              {
+                negative: "Not built for planning",
+                positive: "Automated Planning - Expert-level strategies instantly",
+              },
+              {
+                negative: "Requires Multiple Prompts",
+                positive: "One prompt does it all - Save hours of back-and-forth",
+              },
+              {
+                negative: "Standard Reasoning",
+                positive: "Advanced Reasoning - Make decisions like top strategists",
+              },
+              {
+                negative: "Unexplained Reasoning",
+                positive: "Explainable AI-Build trust with transparent planning",
+              },
+              {
+                negative: "Inconsistent Quality",
+                positive: "Consistent and High-Quality Plans",
+              },
+              {
+                negative: "One-Size Fits All",
+                positive: "Customized to specific needs—no two are alike",
+              },
+            ].map(({ negative, positive }, index) => (
+              <div key={index} className="comparison-row flex justify-between p-4 border-b border-gray-700">
+                <div className="comparison-negative text-red-500">
+                  <span>{negative}</span>
+                </div>
+                <div className="comparison-positive text-green-500">
+                  <span>{positive}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Testimonials Section */}
+      <section className="section-15">
+        <div className="w-layout-blockcontainer w-container">
+          <div className="testimonial-container w-1/3 mx-auto bg-gray-800 rounded-lg p-5 text-gray-300">
+            <div className="testimonial-slider">
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className={`testimonial flex flex-col items-center text-center transition-opacity duration-500 ${index === currentIndex ? 'active opacity-100' : 'opacity-0 hidden'}`}
+                >
+                  <p className="testimonial-text text-lg font-sans line-height-1.6 mb-3">
+                    "{testimonial.text}"
+                  </p>
+                  <a href={testimonial.source} target="_blank" rel="noopener noreferrer" className="testimonial-author font-bold text-pink-500 border-b-2 border-pink-500 hover:text-pink-400 transition-colors duration-300">
+                    - {testimonial.author}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/*Common Questions */}
+      <FAQSection/>
+
+
+
+      {/*Popular Reads */}
+      <PopularReads/>
+
+      {/*Pricing Section */}
+      <PricingSection/>
+
+      {/*Footer Section */}
+      <Footer/>
+
+
+
+
+
 
 
 
