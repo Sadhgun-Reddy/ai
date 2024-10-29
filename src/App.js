@@ -1,8 +1,11 @@
-import './App.css';
+
+import React from "react";
+import HomePage from "./components/Navbar";
 
 function App() {
   return (
-    <div >
+    <div className="App">
+      <HomePage />
       
     </div>
   );
