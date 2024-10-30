@@ -61,11 +61,9 @@ const PopularReads = () => {
   };
 
   return (
-    <section className="py-12 px-4 bg-gray-900">
+    <section className="py-12 px-4 bg-gray-950">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">
-          <span className="text-white ">Popular Reads</span>
-        </h2>
+        
         
         <div className="relative">
           <div className="overflow-hidden">

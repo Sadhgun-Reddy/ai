@@ -3,6 +3,7 @@ import FAQSection from "./FAQSection";
 import PopularReads from "./PopularReads";
 import PricingSection from "./PricingSection";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const HomePage = () => {
 
@@ -124,47 +125,8 @@ const HomePage = () => {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Navbar Section */}
-      <header className="w-full backdrop-blur-md bg-white/70 dark:bg-gray-900/70 fixed top-0 z-50 border-b border-gray-200 dark:border-gray-800">
-        <div className="container mx-auto flex items-center justify-between py-4 px-6">
-          <a href="/" className="flex items-center space-x-2 transform hover:scale-105 transition-transform">
-            <img
-              src="https://cdn.prod.website-files.com/607e1b2ba1855c3039f2d548/64919076bf4bdd782a80350a_Layer%201.svg"
-              alt="helloscribe"
-              className="h-8 w-auto"
-            />
-          </a>
-
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-              About Us
-            </a>
-            <a href="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-              Pricing
-            </a>
-            <a href="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-              Contact
-            </a>
-          </nav>
-
-          <div className="hidden md:flex items-center space-x-4">
-            <a href="/" className="flex items-center space-x-1 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-              <span>Log in</span>
-              <img
-                src="images/64919bddce1ed295b04bb87e_ArrowUp.svg"
-                alt="helloscribe"
-                className="h-4 w-4"
-              />
-            </a>
-            <a
-              href="/"
-              className="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-blue-500/25"
-            >
-              Try Free
-            </a>
-          </div>
-        </div>
-      </header>
+      {/*Navbar section */}
+      <Navbar/>
 
       {/* Hero Section */}
       <div className="section hero bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-32 pb-20">
@@ -537,6 +499,9 @@ const HomePage = () => {
 
 
       {/*Popular Reads */}
+      <h2 className="text-3xl font-bold mb-8 text-center">
+        <span className="text-white ">Popular Reads</span>
+      </h2>
       <PopularReads/>
 
       {/*Pricing Section */}
