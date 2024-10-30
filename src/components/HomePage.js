@@ -510,7 +510,7 @@ const HomePage = () => {
       {/*Footer Section */}
       <Footer/>
 
-
+      
 
 
 

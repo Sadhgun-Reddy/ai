@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer';
 
 const PricingSection = () => {
   const plans = [
@@ -53,7 +54,7 @@ const PricingSection = () => {
   ];
 
   return (
-    <section className="py-16 px-4 bg-gray-950 relative overflow-hidden">
+    <section className="py-16 px-4 bg-gray-950 relative overflow-hidden mt-5">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-64 h-64 transform translate-x-1/3 -translate-y-1/3">
         <div className="absolute inset-0 bg-blue-50 rounded-full opacity-20"></div>
@@ -134,6 +135,9 @@ const PricingSection = () => {
             </div>
           ))}
         </div>
+      </div>
+      <div className='mt-6'>
+        <Footer/>
       </div>
     </section>
   );

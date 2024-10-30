@@ -1,13 +1,20 @@
-
 import React from "react";
-import HomePage from "./components/HomePage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import AboutUs from "./components/AboutUs"; // Import the AboutUsPage component
+import HomePage from "./components/HomePage"; // Replace this with your actual home page component
+import PricingSection from "./components/PricingSection";
 
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-      
-    </div>
+    <Router>
+      <Navbar /> {/* Display the Navbar on all pages */}
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/pricing-section" element={<PricingSection/>}/>
+      </Routes>
+    </Router>
   );
 }
 
